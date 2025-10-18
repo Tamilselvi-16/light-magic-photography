@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Magic Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+   
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', sans-serif; line-height:1.6; color:#333; scroll-behavior:smooth; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; display:block; }
+    button { cursor:pointer; }
+
+
+    nav { display:flex; justify-content:space-between; align-items:center;
+          padding:15px 50px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1526481280690-41a23b91b9b2?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+          color:white; position:sticky; top:0; z-index:1000; }
+    nav .logo { font-size:1.5rem; font-weight:700; }
+    nav ul { display:flex; list-style:none; gap:25px; }
+    nav ul li a { font-weight:600; transition:0.3s; }
+    nav ul li a:hover { color:#f4b47a; }
+
+    
+    .hero { height:90vh; background:url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+           display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; padding:0 20px; }
+    .hero h1 { font-size:3rem; margin-bottom:15px; text-shadow:2px 2px 10px rgba(0,0,0,0.6); }
+    .hero p { font-size:1.5rem; text-shadow:1px 1px 6px rgba(0,0,0,0.6); }
+
+    section { padding:80px 50px; opacity:0; transform: translateY(50px); transition: 0.8s ease-out; }
+    section.active { opacity:1; transform: translateY(0); }
+    section h2 { text-align:center; font-size:2.5rem; margin-bottom:50px; }
+
+    
+    .service { display:flex; flex-wrap:wrap; gap:30px; margin-bottom:60px; align-items:center; }
+    .service:nth-child(even) { flex-direction: row-reverse; }
+    .service .text, .service .image { flex:1; min-width:100px; }
+    .service .text h3 { font-size:2rem; margin-bottom:20px; }
+    .service .text p.quote { font-style:italic; margin-top:15px; color:#f4b47a; }
+
+  
+    .features { display:flex; flex-wrap:wrap; gap:30px; align-items:center; }
+    .features .text { flex:1; min-width:300px; }
+    .features .text ul { list-style:none; padding-left:0; }
+    .features .text ul li { margin-bottom:15px; position:relative; padding-left:30px; font-weight:500; }
+    .features .text ul li i { position:absolute; left:0; color:#f4b47a; }
+    .features .image { flex:1; min-width:300px; }
+
+    .lets-chat { display:flex; flex-wrap:wrap; gap:30px; align-items:center; text-align:center; }
+    .lets-chat .image { flex:1; min-width:300px; }
+    .lets-chat .center-text { flex:1; min-width:300px; }
+    .lets-chat form { margin-top:30px; display:flex; flex-direction:column; gap:15px; }
+    .lets-chat input, .lets-chat textarea, .lets-chat button { padding:10px; font-size:1rem; border:1px solid #ccc; border-radius:5px; }
+    .lets-chat button { background:#f4b47a; color:white; border:none; font-weight:600; transition:0.3s; }
+    .lets-chat button:hover { background:#d8935f; }
+
+    
+    .about { display:flex; flex-wrap:wrap; align-items:center; gap:40px; }
+    .about .image { flex:1; min-width:300px; }
+    .about .text { flex:1; min-width:300px; }
+    .about .text p { margin-bottom:20px; }
+    .about .quote { font-style:italic; color:#f4b47a; font-weight:600; }
+
+    .contact { text-align:center; }
+    .contact .details { display:flex; flex-direction:column; align-items:center; gap:10px; font-size:1.2rem; }
+    .contact img { max-width:400px; margin:20px auto; border-radius:10px; }
+    .contact .details p i { color:#f4b47a; margin-right:10px; }
+footer {
+  position: relative;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/* Background image fills the footer area */
+.footer-image {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+}
+
+.footer-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Centered logo */
+.footer-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: auto;
+  z-index: 2;
+}
+
+/* Footer text */
+.footer-content {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  color: black;
+}
+
+.footer-content p {
+  margin: 8px 0;
+  font-size: 18px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Instagram link */
+.insta-link {
+  color: #ffb6c1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.insta-link:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+/* Arrow container at bottom-right */
+.arrow-container {
+  position: absolute;
+  bottom: 20px;  /* distance from bottom */
+  right: 20px;   /* distance from right */
+  z-index: 5;
+}
+
+/* Back to top button */
+.back-to-top {
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-to-top:hover {
+  background: #ff1493;
+  transform: scale(1.1);
+}
+
+
+  
+    @media(max-width:900px){
+      .service, .features, .lets-chat, .about { flex-direction:column; }
+      nav { flex-direction:column; gap:10px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <nav>
+    <div class="logo">Light Magic</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#lets-chat">Let's Chat</a></li>
+    </ul>
+  </nav>
+
+<section class="hero" id="home">
+  <h1>Your Story, Beautifully Told</h1>
+  <p>Capturing authentic moments and timeless memories with a touch of artistry</p>
+ 
+  <button class="down-arrow" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">
+    ↓
+  </button>
+</section>
+
+<style>
+
+  .hero { position: relative; }
+
+
+  .down-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background: #f4b47a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .down-arrow:hover {
+    background: #d8935f;
+  }
+</style>
+
+
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about">
+      <div class="image">
+        <img src="C:\demo project design\image 2(cam).avif" alt="About Light Magic">
+      </div>
+      <div class="text">
+        <p>Welcome to <strong>Light Magic Photography</strong> — where every frame tells a story. With over <strong>7 years of experience</strong> in the art of photography, our studio has mastered the craft of transforming fleeting moments into timeless masterpieces. We specialize in weddings, portraits, and creative storytelling through the lens.</p>
+        <p class="quote">“Photography is more than capturing images — it's capturing emotions that last forever.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+  <div class="service">
+      <div class="text">
+        <h3>Wedding Shoot 💍</h3>
+        <p>At Light Magic, we capture your love story with heart and artistry.
+             Our wedding collections start at $6,500, including 8 hours of coverage,
+              an engagement session, an outfit guide, and a custom timeline to make your day seamless.</p>
+        <p class="quote">“Lets create the perfect package for your special day.”</p>
+      </div>
+      <div class="image">
+        <img src="C:\demo project design\image.wedding.webp" alt="Wedding Shoot">
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="image">
+        <img src="C:\demo project design\image.portrait.jpg" alt="Portrait Sessions">
+      </div>
+      <div class="text">
+        <h3>Portrait Sessions 📸</h3>
+        <p>At Light Magic, we believe portraits should tell your story  real, radiant, and full of life.
+             Our portrait sessions start at $2,500, including a personalized photoshoot experience, 
+             outfit and styling guidance, and professional editing to bring out your natural glow.</p>
+        <p class="quote">“We'll create images that feel like you.”</p>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="text">
+        <h3>Event Photography 🎉</h3>
+        <p>Every event has its own magic — and at Light Magic, we're here to capture it all.
+             Our event photography packages start at $3,500, including full coverage, 
+             custom timeline planning, and professionally edited images that highlight every unforgettable moment</p>
+        <p class="quote">“Let's capture the moments that make your event unforgettable.”</p>
+      </div>
+      <div class="image">
+        <img src="C:\demo project design\demo image 7.jpg" alt="Event Photography">
+      </div>
+    </div>
+  </section>
+
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="text">
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Professional 4K Equipment Every shot is captured with cutting-edge cameras and lenses for crystal-clear, cinematic quality.</li>
+          <li><i class="fas fa-check-circle"></i> Creative Team with 3 Years of Experience Our seasoned photographers blend artistry and technology to bring your story to life.</li>
+          <li><i class="fas fa-check-circle"></i> Customizable Packages From intimate portraits to grand celebrations, we tailor every collection to match your vision and budget.</li>
+          <li><i class="fas fa-check-circle"></i>  Instant Preview & Editing Support Get real-time previews and quick edits to ensure every detail is just right.</li>
+          <li><i class="fas fa-check-circle"></i> Personalized Experience  Each session is crafted around you — your story, your style, your magic.
+        </li>
+        </ul>
+        </ul>
+      </div>
+      <div class="image">
+        <img src="C:\demo project design\image.rent.jpg" alt="Features Image">
+      </div>
+    </div>
+
+  </section>
+
+  
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80" alt="Contact Image">
+      <div class="details">
+        <p><i class="fas fa-envelope"></i> Email: light.magic1610@gmail.com</p>
+        <p><i class="fas fa-phone"></i> Contact: 7092261353</p>
+        <p><i class="fab fa-instagram"></i> Instagram: <strong>@light_magic5</strong></p>
+      </div>
+      <p style="margin-top:20px;">For bookings, collaborations, or any creative inquiries — reach out and let's create something magical together!</p>
+    </div>
+  </section>
+
+  
+<section id="lets-chat">
+  <h2>Let's Chat</h2>
+  <div class="lets-chat">
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=600&q=80" alt="Left Image">
+    </div>
+    <div class="center-text">
+      <p>We'd love to hear about your wedding plans, photo vision, or any questions — the more details, the better!
+      We reply to all inquiries Monday to Friday. If you don't hear from us in a few days, check your spam folder.
+    Can't wait to create something magical with you!</p>
+      <form action="https://formspree.io/f/xjkapopz" method="POST">
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <input type="date" name="event_date" placeholder="Event Date" required>
+  <input type="text" name="event_location" placeholder="Event Location" required>
+  <input type="text" name="budget" placeholder="What's your Photography budget?" required>
+  <textarea name="message" rows="5" placeholder="Message" required></textarea>
+  <button type="submit">SUBMIT</button>
+  </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-image">
+    <img src="C:\demo project design\image 3.jpeg" alt="Background Image" class="footer-bg">
+    <img src="C:\demo project design\logo.light_magic.png" alt="Light Magic Logo" class="footer-logo">
+
+    <div class="footer-content">
+      <p>✉️ light.magic1610@gmail.com</p>
+      <p>📞 7092261353</p>
+      <p>
+        📸
+        <a href=https://www.instagram.com/light_magic5?igsh=MWVhc3Bkam91ZjZrOQ= target="_blank" class="insta-link">
+          light_magic5
+        </a>
+      </p>
+    </div>
+
+    <!-- Arrow placed outside the footer content -->
+    <div class="arrow-container">
+      <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'});">↑</button>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- JS for Scroll Animations -->
+  <script>
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom) section.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
